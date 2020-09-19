@@ -10,7 +10,7 @@
 #include <QCoreApplication>
 #include <QApplication>
 
-#include "check_data_receiver.h"
+#include "hid_data_receiver.h"
 #include "ui_hid_data_receiver.h"
 #include "pressgraph.h"
 
