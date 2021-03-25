@@ -19,6 +19,7 @@ SOURCES += \
     ../_QT_Libs/hidapi-0.7.0/windows/hid.c \
     cricketapplication.cpp \
     cricketpressure.cpp \
+    cricketpressure_adv.cpp \
     main.cpp \
     neuresapplication.cpp
 
@@ -26,11 +27,13 @@ HEADERS += \
     ../_QT_Libs/hidapi-0.7.0/hidapi/hidapi.h \
     cricketapplication.h \
     cricketpressure.h \
+    cricketpressure_adv.h \
     neuresapplication.h
 
 FORMS += \
     cricketapplication.ui \
     cricketpressure.ui \
+    cricketpressure_adv.ui \
     neuresapplication.ui
 
 TRANSLATIONS += \

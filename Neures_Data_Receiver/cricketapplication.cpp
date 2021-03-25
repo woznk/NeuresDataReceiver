@@ -139,7 +139,6 @@ void CricketApplication::rxHandler()
             case CID_TRANSFER_OFF:
                         POMIARtimer->stop();
                         timer_1s->stop();
-                        timer_bar->stop();
 //                      if(ui->btnPAUSE->isEnabled()){
                         ui->timerEdit->setTime(ui->timerEdit->time().addSecs(-(QTime(0,0,0).secsTo(ui->timerEdit->time()))));
 //                      };
@@ -171,7 +170,6 @@ void CricketApplication::rxHandler()
             case CID_UNREADY:
                         POMIARtimer->stop();
                         timer_1s->stop();
-                        timer_bar->stop();
                   //      if(ui->btnPAUSE->isEnabled()){
                             ui->timerEdit->setTime(ui->timerEdit->time().addSecs(-(QTime(0,0,0).secsTo(ui->timerEdit->time()))));
                   //      };
@@ -194,9 +192,6 @@ void CricketApplication::rxHandler()
 //                        timer_1s->start(1000);
                         ui->btnPAUSE->setEnabled(true);
                         ui->btnPAUSE->setText("Pauza");
-                        if(!timer_bar->isActive()) {
-                            timer_bar->start(35);
-                        }
 /*U4001*/               qDebug() << inBuffer[1];
 //                        POMIARtimer->start(QTime(0,0,0).msecsTo(ui->timerEdit->time()));
                         break;
@@ -250,29 +245,37 @@ void CricketApplication::rxHandler()
                    //                qDebug() << i+1;
 /*U2*/                             switch (i) {
 /*U2*/                                  case 0:
-                                            outdata1 = outdata;
-//                                            if(outdata1>=pressure1){
-//                                              ui->progressObwod1->setValue(100);
-//                                            } else {
-//                                              ui->progressObwod1->setValue((int)(outdata1/pressure1)*100);
-//                                            }
-                                            break;
-                                        case 1:
+//R2021-03-16                                            if(pressure1==0){
+/*U2021-03-18.1*/                           outdata1 = outdata;
+/*U2021-03-16*/                             if(outdata>=pressure1){
+                                                ui->progressObwod1->setValue(100);
+                                            } else {
+/*U2*/                                          ui->progressObwod1->setValue((int)(((float)outdata/pressure1)*100));
+                                            }
+//R2021-03-07                                            qDebug() << outdata;
 
-                                            outdata2 = outdata;
-//                                            if(outdata2>=pressure2){
-//                                                ui->progressObwod2->setValue(100);
-//                                            } else {
-//                                                ui->progressObwod2->setValue((int)(outdata2/pressure2)*100);
-//                                            }
-                                            break;
-                                        case 2:
-                                            outdata3 = outdata;
-//                                            if(outdata3>=pressure3){
-//                                                ui->progressObwod3->setValue(100);
-//                                            } else {
-//                                                ui->progressObwod3->setValue((int)((float)outdata3/pressure3)*100);
-//                                            }
+                                     //       qDebug() << ((float)outdata/pressure1)*100;
+                                     //       qDebug() << pressure1;
+/*U2*/                                      break;
+/*U2*/                                  case 1:
+//R2021-03-16                                            if(pressure2==0){
+/*U2021-03-18.1*/                           outdata2 = outdata;
+/*U2021-03-16*/                             if(outdata>=pressure2){
+                                                ui->progressObwod2->setValue(100);
+                                            } else {
+//R2021-03-07                                            qDebug() << outdata;
+/*U2*/                                          ui->progressObwod2->setValue((int)(((float)outdata/pressure2)*100));
+                                            }
+/*U2*/                                      break;
+/*U2*/                                  case 2:
+//R2021-03-07                                            qDebug() << outdata;
+//R2021-03-16                                            if(pressure3==0){
+/*U2021-03-18.1*/                           outdata3 = outdata;
+/*U2021-03-16*/                             if(outdata>=pressure3){
+/*U2*/                                          ui->progressObwod3->setValue(100);
+                                            } else {
+                                                ui->progressObwod3->setValue((int)(((float)outdata/pressure3)*100));
+                                            }
 /*U2*/                                      break;
 /*U2*/                             }
 /*U1*/                          }
@@ -313,26 +316,10 @@ void CricketApplication::updataDisplayTime()
    connect(ui->timerEdit, SIGNAL(userTimeChanged(QTime)), this, SLOT(on_timerEdit_userTimeChanged(QTime)));
 }
 
-void CricketApplication::updateBars()                                       //U2021-03-17.1
-{                                                                           //U2021-03-17.1
-   if(outdata1>=pressure1){
-      ui->progressObwod1->setValue(100);
-    } else {
-      ui->progressObwod1->setValue((int)((outdata1/pressure1)*100));
-    }
-
-    if(outdata2>=pressure2){
-      ui->progressObwod2->setValue(100);
-    } else {
-      ui->progressObwod2->setValue((int)((outdata2/pressure2)*100));
-    }
-
-    if(outdata3>=pressure3){
-      ui->progressObwod3->setValue(100);
-    } else {
-      ui->progressObwod3->setValue((int)((outdata3/pressure3)*100));
-    }                                                                       //U2021-03-17.1
-}                                                                           //U2021-03-17.1
+void CricketApplication::updateBars()           //U2021-03-17.1
+{                                               //U2021-03-17.1
+                                                //U2021-03-17.1
+}                                               //U2021-03-17.1
 
 //--------------------------------------------------------
 void CricketApplication::on_timerEdit_userTimeChanged(const QTime &time)

@@ -59,9 +59,9 @@ private:
     Ui::CricketApplication *ui;
 
     int outdata = 0;
-    float outdata1 = 0;               //U2021-03-17.1
-    float outdata2 = 0;               //U2021-03-17.1
-    float outdata3 = 0;               //U2021-03-17.1
+    int outdata1 = 0;               //U2021-03-17.1
+    int outdata2 = 0;               //U2021-03-17.1
+    int outdata3 = 0;               //U2021-03-17.1
     unsigned char outBuffer[65];    //outBuffer[0] is for endpoint number
     unsigned char inBuffer[64];
     int io_result = 0;
